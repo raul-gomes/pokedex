@@ -19,16 +19,18 @@ export default {
 			setIsPokemonSearch(false);
 			setListError(false);
 
-			const pokemonList = await PokeAPI.getPokemons({ limit: state.limit, offset: state.offset });
+			const pokemonsList = await PokeAPI.getPokemons({ limit: state.limit, offset: state.offset });
 
-			if (pokemonList?.result?.length) {
-				const prepareInfo = pokemonList.results.map(item => PokeAPI.getPokemonByName(item.name));
+			if (pokemonsList?.results?.length) {
+				const prepareInfo = pokemonsList.results.map(item => PokeAPI.getPokemonByName(item.name));
 				const pokemonsInfo = await Promise.all(prepareInfo);
+
+				console.log(pokemonsInfo);
 
 				setList(pokemonsInfo);
 			}
 
-			if (pokemonList?.next){
+			if (pokemonsList?.next){
 				setListHasNext(true);
 				updateOffset();
 			} else {
@@ -62,6 +64,7 @@ export default {
 
 		if (!name) {
 			resetList();
+			return;
 		}
 
 		try {
@@ -69,7 +72,8 @@ export default {
 			setIsSearching(true);
 			setIsPokemonSearch(true);
 
-			const pokemon = state.list.find(info => info.name.toLowerCase() === name.toLowerCase());
+			const pokemon = state.tmpList.find(info => info.name.toLowerCase() === name.toLowerCase());
+
 
 			if (pokemon){
 				setPokemonSearched(pokemon);
