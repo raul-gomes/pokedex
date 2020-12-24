@@ -15,7 +15,7 @@ export default {
 
 	// Inform if the pokedex needs more data
 	setListHasNext(flag) {
-		state.listHasNest = flag;
+		state.listHasNext = flag;
 	},
 
 	// Informs if the pokedex has finished fetching data
@@ -24,7 +24,7 @@ export default {
 	},
 
 	// Informs if the pokedex got an error
-	setListError(flag) {
+	setListHasError(flag) {
 		state.listHasError = flag;
 	},
 

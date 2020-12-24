@@ -7,7 +7,8 @@
 				<span class="name">{{ name }}</span>
 			</h3>
 			<div class="types">
-				<span v-for:"type in types"
+				<span
+					v-for="type in types"
 					:key="type"
 					:class="`bg--${type}`"
 					class="type text--black"

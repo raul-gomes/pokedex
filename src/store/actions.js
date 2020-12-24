@@ -8,16 +8,16 @@ export default {
 		const {
 			setList,
 			setIsPokemonSearch,
-			setPokemonSearched,
 			setListError,
 			setListHasNext,
 			setListCompleted,
 			updateOffset,
 		} = mutations;
 
+
 		try {
 			setIsPokemonSearch(false);
-			setListError(false);
+			setListHasError(false);
 
 			const pokemonsList = await PokeAPI.getPokemons({ limit: state.limit, offset: state.offset });
 
@@ -25,31 +25,28 @@ export default {
 				const prepareInfo = pokemonsList.results.map(item => PokeAPI.getPokemonByName(item.name));
 				const pokemonsInfo = await Promise.all(prepareInfo);
 
-				console.log(pokemonsInfo);
-
 				setList(pokemonsInfo);
 			}
 
-			if (pokemonsList?.next){
+			if (pokemonsList?.next) {
 				setListHasNext(true);
 				updateOffset();
 			} else {
 				setListHasNext(false);
-				setListCompleted(true);
+				setListHasCompleted(true);
 			}
-			
 		} catch (error) {
-			setListError(true);
+			setListHasError(true);
 		}
 	},
 
 	async getPokemonByName(name){
-		const { setIsPokemonSearch } = mutations
+		const { setIsPokemonSearch } = mutations;
 
-		const pokemon = await PokeAPI.getPokemonByName(name)
+		const pokemon = await PokeAPI.getPokemonByName(name);
 
 		if (pokemon) {
-			setPokemonSearched(pokemon)
+			setPokemonSearched(pokemon);
 		}
 	},
 
