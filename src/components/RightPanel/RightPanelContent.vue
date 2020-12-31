@@ -24,7 +24,7 @@
 </template>
 
 <script>
-	import { actios, mutations } from '@/store';
+	import { actions, mutations } from '@/store';
 	
 	export default {
 		name: 'RightPanelContent',

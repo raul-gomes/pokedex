@@ -7,7 +7,8 @@
 				<span class="name">{{ name }}</span>
 			</h3>
 			<div class="types">
-				<span v-for:"type in types"
+				<span
+					v-for="type in types"
 					:key="type"
 					:class="`bg--${type}`"
 					class="type text--black"
@@ -20,38 +21,38 @@
 </template>
 
 <script>
-import { mutations } from '@/store';
+	import { mutations } from '@/store';
 
-export default {
-	name: 'ListItem',
-	props: {
-		name: {
-			type: String,
-			required: true,
+	export default {
+		name: 'ListItem',
+		props: {
+			name: {
+				type: String,
+				required: true,
+				},
+			id: {
+				type: Number,
+				required: true,
+				},
+			sprite: {
+				type: String,
+				required: true,
+				},
+			types: {
+				type: Array,
+				required: true,
+				validator(values) {
+					return Array.isArray(values) && values.every(value => typeof value === 'string');
+					},
+				},
 			},
-	id: {
-		type: Number,
-		required: true,
-		},
-	sprite: {
-		type: String,
-		required: true,
-		},
-	types: {
-		type: Array,
-		required: true,
-		validator(values) {
-			return Array.isArray(values) && values.every(value => typeof value === 'string');
-			},
-		},
-	},
 
-	methods: {
-		selectPokemon() {
-			mutations.setPokemonId(this.id);
+		methods: {
+			selectPokemon() {
+				mutations.setPokemonId(this.id);
+			},
 		},
-	},
-};
+	};
 </script>
 
 

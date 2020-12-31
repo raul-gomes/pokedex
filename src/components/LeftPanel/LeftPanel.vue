@@ -8,7 +8,7 @@
 	import LeftPanelContent from './LeftPanelContent.vue';
 
 	export default {
-		name: 'LeftName',
+		name: 'LeftPanel',
 		components: {
 			LeftPanelContent,
 		},
