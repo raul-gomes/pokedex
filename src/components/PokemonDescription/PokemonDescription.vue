@@ -1,7 +1,7 @@
 <template>
 	<div class="pokemon">
-		<ListItem v-bind="mainsInfo" />
-		<ul>
+		<ListItem v-bind="mainInfo" />
+		<ul class="stats">
 			<li v-for="(stat, index) in stats" :key="index">
 				{{ parseStatName(stat.stat.name) }}: {{ stat.base_stat }}
 			</li>
@@ -12,7 +12,7 @@
 <script>
 import ListItem from '@/components/List/ListItem.vue';
 import { state } from '@/store';
-import { parsePokemonInfo} from '@/utils';
+import { parsePokemonInfo } from '@/utils';
 
 const statsNames = {
 	hp: 'HP',
@@ -36,7 +36,7 @@ export default {
 	},
 	data(){
 		return {
-			mainsInfo: null,
+			mainInfo: null,
 			stats: [],
 		};
 	},
@@ -46,13 +46,14 @@ export default {
 		if (pokemonInfo) {
 			const infoParsed = parsePokemonInfo(pokemonInfo);
 
-			const { stats, ...rest} = infoParsed;
+			const { stats, ...rest } = infoParsed;
 
-			this.mainsInfo = rest;
+			this.mainInfo = rest;
 			this.stats = stats;
+
 		}
 	},
-	method: {
+	methods: {
 		parseStatName(name) {
 			return statsNames[name] || name;
 		},

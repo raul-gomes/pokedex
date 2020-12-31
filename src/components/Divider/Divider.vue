@@ -1,4 +1,4 @@
-<template funcional>
+<template functional>
 	<div class="divider bg--red-01">
 		<div class="arc arc--top bg--red-04" />
 		<div class="arc arc--bottom bg--red-04" />
@@ -13,6 +13,7 @@
 		left: calc(50% - 20px);
 		top: 40px;
 		box-shadow: inset 10px 0 0 0 color('red-00'), inset -10px 0 0 0 color('red-03');
+		
 		.arc {
 			position: absolute;
 			height: 4px;

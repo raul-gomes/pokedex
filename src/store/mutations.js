@@ -19,7 +19,7 @@ export default {
 	},
 
 	// Informs if the pokedex has finished fetching data
-	setListCompleted(flag) {
+	setListHasCompleted(flag) {
 		state.listHasCompleted = flag;
 	},
 

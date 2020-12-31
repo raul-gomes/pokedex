@@ -8,9 +8,9 @@ export default {
 		const {
 			setList,
 			setIsPokemonSearch,
-			setListError,
+			setListHasError,
 			setListHasNext,
-			setListCompleted,
+			setListHasCompleted,
 			updateOffset,
 		} = mutations;
 
@@ -23,9 +23,10 @@ export default {
 
 			if (pokemonsList?.results?.length) {
 				const prepareInfo = pokemonsList.results.map(item => PokeAPI.getPokemonByName(item.name));
-				const pokemonsInfo = await Promise.all(prepareInfo);
+				const pokemonsInfo = await Promise.all(prepareInfo)
 
 				setList(pokemonsInfo);
+				
 			}
 
 			if (pokemonsList?.next) {
@@ -41,7 +42,7 @@ export default {
 	},
 
 	async getPokemonByName(name){
-		const { setIsPokemonSearch } = mutations;
+		const { setPokemonSearched } = mutations;
 
 		const pokemon = await PokeAPI.getPokemonByName(name);
 
@@ -78,6 +79,7 @@ export default {
 			}
 
 			await this.getPokemonByName(name);
+			
 		}catch (error) {
 			setSearchHasError(true);
 		} finally {

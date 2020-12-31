@@ -52,7 +52,7 @@
 			position: absolute;
 			display: flex;
 			top: 0;
-			width: 47.5%;
+			width: 100%;
 			height: 100%;
 			padding: 85px 20px 20px;
 			clip-path: polygon(270px 41px, 100% 41px, 100% 100%, 0 100%, 0 75px, 200px 75px);
